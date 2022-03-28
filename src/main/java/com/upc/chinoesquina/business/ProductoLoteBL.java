@@ -15,6 +15,7 @@ public class ProductoLoteBL {
     private ProductoLoteDA objProductoLoteDA = null;
 
     public ProductoLote Register(ProductoLote objProductoLote){
+        objProductoLote.setFechaRegistro(new Date(System.currentTimeMillis()));
         return objProductoLoteDA.Register(objProductoLote);
     }
 

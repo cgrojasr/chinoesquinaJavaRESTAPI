@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import java.util.Date;
 
 @Entity
-public class ProductoLote {
+public class ProductoLote extends AuditoriaData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idProductoLote;
@@ -17,10 +17,6 @@ public class ProductoLote {
     private Date fechaIngreso;
     private Date fechaVencimiento;
     private Boolean eliminado;
-    private Integer idUsuarioRegistro;
-    private Date fechaRegistro;
-    private Integer idUsuarioModifico;
-    private Date fechaModifico;
 
     public Integer getIdProductoLote() {
         return idProductoLote;
@@ -76,37 +72,5 @@ public class ProductoLote {
 
     public void setEliminado(Boolean eliminado) {
         this.eliminado = eliminado;
-    }
-
-    public Integer getIdUsuarioRegistro() {
-        return idUsuarioRegistro;
-    }
-
-    public void setIdUsuarioRegistro(Integer idUsuarioRegistro) {
-        this.idUsuarioRegistro = idUsuarioRegistro;
-    }
-
-    public Date getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(Date fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
-    }
-
-    public Integer getIdUsuarioModifico() {
-        return idUsuarioModifico;
-    }
-
-    public void setIdUsuarioModifico(Integer idUsuarioModifico) {
-        this.idUsuarioModifico = idUsuarioModifico;
-    }
-
-    public Date getFechaModifico() {
-        return fechaModifico;
-    }
-
-    public void setFechaModifico(Date fechaModifico) {
-        this.fechaModifico = fechaModifico;
     }
 }

@@ -1,16 +1,13 @@
 package com.upc.chinoesquina.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-public class PedidoCabecera {
+public class PedidoCabecera extends AuditoriaData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPedidoCabecera;
@@ -20,14 +17,16 @@ public class PedidoCabecera {
     private Integer cantidadItems;
     private Float montoTotal;
     private Boolean eliminado;
-    @JsonIgnore
-    private Integer idUsuarioRegistro;
-    @JsonIgnore
-    private Date fechaRegistro;
-    @JsonIgnore
-    private Integer idUsuarioModifico;
-    @JsonIgnore
-    private Date fechaModifico;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<PedidoDetalle> detalle;
+
+    public List<PedidoDetalle> getDetalle() {
+        return detalle;
+    }
+
+    public void setDetalle(List<PedidoDetalle> detalle) {
+        this.detalle = detalle;
+    }
 
     public Integer getIdPedidoCabecera() {
         return idPedidoCabecera;
@@ -83,37 +82,5 @@ public class PedidoCabecera {
 
     public void setEliminado(Boolean eliminado) {
         this.eliminado = eliminado;
-    }
-
-    public Integer getIdUsuarioRegistro() {
-        return idUsuarioRegistro;
-    }
-
-    public void setIdUsuarioRegistro(Integer idUsuarioRegistro) {
-        this.idUsuarioRegistro = idUsuarioRegistro;
-    }
-
-    public Date getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(Date fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
-    }
-
-    public Integer getIdUsuarioModifico() {
-        return idUsuarioModifico;
-    }
-
-    public void setIdUsuarioModifico(Integer idUsuarioModifico) {
-        this.idUsuarioModifico = idUsuarioModifico;
-    }
-
-    public Date getFechaModifico() {
-        return fechaModifico;
-    }
-
-    public void setFechaModifico(Date fechaModifico) {
-        this.fechaModifico = fechaModifico;
     }
 }

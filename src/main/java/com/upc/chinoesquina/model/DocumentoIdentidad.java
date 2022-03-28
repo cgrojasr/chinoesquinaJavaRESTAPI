@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class DocumentoIdentidad {
-    //Alt+Insert para generar los getters y setters
+public class DocumentoIdentidad extends AuditoriaData {
+    //Alt+Insert para generar los getters y setters en Windows
     //Command + N para Linux o MacOs
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,10 +14,6 @@ public class DocumentoIdentidad {
     private String abreviatura;
     private Boolean activo;
     private Boolean eliminado;
-    private Integer idUsuarioRegistro;
-    private Date fechaRegistro;
-    private Integer idUsuarioModifico;
-    private Date fechaModifico;
 
     public Integer getIdDocumentoIdentidad() {
         return idDocumentoIdentidad;
@@ -57,37 +53,5 @@ public class DocumentoIdentidad {
 
     public void setEliminado(Boolean eliminado) {
         this.eliminado = eliminado;
-    }
-
-    public Integer getIdUsuarioRegistro() {
-        return idUsuarioRegistro;
-    }
-
-    public void setIdUsuarioRegistro(Integer idUsuarioRegistro) {
-        this.idUsuarioRegistro = idUsuarioRegistro;
-    }
-
-    public Date getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(Date fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
-    }
-
-    public Integer getIdUsuarioModifico() {
-        return idUsuarioModifico;
-    }
-
-    public void setIdUsuarioModifico(Integer idUsuarioModifico) {
-        this.idUsuarioModifico = idUsuarioModifico;
-    }
-
-    public Date getFechaModifico() {
-        return fechaModifico;
-    }
-
-    public void setFechaModifico(Date fechaModifico) {
-        this.fechaModifico = fechaModifico;
     }
 }
