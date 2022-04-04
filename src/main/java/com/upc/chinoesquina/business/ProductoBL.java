@@ -5,6 +5,7 @@ import com.upc.chinoesquina.model.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.xml.bind.ValidationException;
 import java.util.Date;
 import java.util.Optional;
 
@@ -18,9 +19,11 @@ public class ProductoBL {
         return objProductoDA.Register(objProducto);
     }
 
-    public Producto Update(Producto objProducto){
-        objProducto.setFechaModifico(new Date(System.currentTimeMillis()));
-        return objProductoDA.Update(objProducto);
+    public Producto Update(Producto objProducto) throws ValidationException {
+        if(objProductoDA.GetById(objProducto.getIdProducto()).isPresent()){
+            objProducto.setFechaModifico(new Date(System.currentTimeMillis()));
+            return objProductoDA.Update(objProducto);
+        } else throw new ValidationException("El producto no existe");
     }
 
     public Iterable<Producto> GetAll(){
