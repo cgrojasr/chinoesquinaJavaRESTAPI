@@ -3,8 +3,11 @@ package com.upc.chinoesquina.dataaccess;
 import com.upc.chinoesquina.interfaces.ProductoRepository;
 import com.upc.chinoesquina.model.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -33,7 +36,7 @@ public class ProductoDA {
         return objProducto;
     }
 
-    public Iterable<Producto> GetAll(){
+    public List<Producto> GetAll(){
         return repository.findAll();
     }
 
@@ -47,5 +50,9 @@ public class ProductoDA {
 
     public Iterable<Producto> GetByActivo(Boolean activo){
         return repository.findByActivo(activo);
+    }
+
+    public Page<Producto> GetAllPagination(int offset, int pageSize){
+        return repository.findAll(PageRequest.of(offset, pageSize));
     }
 }

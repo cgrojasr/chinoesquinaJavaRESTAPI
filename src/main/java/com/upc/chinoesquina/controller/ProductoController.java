@@ -3,6 +3,7 @@ package com.upc.chinoesquina.controller;
 import com.upc.chinoesquina.business.ProductoBL;
 import com.upc.chinoesquina.model.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -13,7 +14,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/producto")
-@CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://chinoesquina2.s3-website.us-east-2.amazonaws.com")
 public class ProductoController {
     @Autowired
     private ProductoBL objProductoBL = null;
@@ -47,5 +49,10 @@ public class ProductoController {
     @GetMapping("/filterByActivo")
     public Iterable<Producto> GetByActivo(@PathParam("activo") Boolean activo){
         return objProductoBL.GetByActivo(activo);
+    }
+
+    @GetMapping("/pagination/{offset}/{pageSize}")
+    public Page<Producto> GetAllPagination(@PathVariable int offset, @PathVariable int pageSize){
+        return objProductoBL.GetAllPagination(offset, pageSize);
     }
 }

@@ -3,6 +3,7 @@ package com.upc.chinoesquina.business;
 import com.upc.chinoesquina.dataaccess.ProductoDA;
 import com.upc.chinoesquina.model.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import javax.xml.bind.ValidationException;
@@ -40,5 +41,9 @@ public class ProductoBL {
 
     public Iterable<Producto> GetByActivo(Boolean activo){
         return objProductoDA.GetByActivo(activo);
+    }
+
+    public Page<Producto> GetAllPagination(int offset, int pageSize){
+        return objProductoDA.GetAllPagination(offset, pageSize);
     }
 }
